@@ -1,0 +1,28 @@
+{
+  "name": "address-dashboard-backend",
+  "version": "1.0.0",
+  "description": "Address Dashboard Backend",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon --exec ts-node src/index.ts",
+    "dev:api": "nodemon --exec ts-node src/index.ts --api",
+    "build": "tsc",
+    "start": "node ./dist/index.js"
+  },
+  "keywords": [
+    "typescript",
+    "express",
+    "mongodb"
+  ],
+  "author": "Daniel Alejandro Uncos Aciar",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1",
+    "nodemon": "^3.1.14"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}
