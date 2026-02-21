@@ -17,6 +17,7 @@
   "author": "Daniel Alejandro Uncos Aciar",
   "license": "ISC",
   "dependencies": {
+    "colors": "^1.4.0",
     "dotenv": "^17.3.1",
     "express": "^5.2.1"
   },
