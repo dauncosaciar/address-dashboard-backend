@@ -1,4 +1,6 @@
-import mongoose, { Schema, Document, Types } from "mongoose";
+import mongoose, { Schema, Document, PopulatedDoc, Types } from "mongoose";
+import { IAddress } from "./AddressModel";
+import { IStudy } from "./StudyModel";
 
 const userRoles = {
   ADMIN: "admin",
@@ -13,6 +15,8 @@ export interface IUser extends Document {
   role: UserRoles;
   email: string;
   password: string;
+  addresses: PopulatedDoc<IAddress & Document>[];
+  studies: PopulatedDoc<IStudy & Document>[];
 }
 
 const UserSchema: Schema = new Schema(
@@ -41,7 +45,19 @@ const UserSchema: Schema = new Schema(
     password: {
       type: String,
       required: true
-    }
+    },
+    addresses: [
+      {
+        type: Types.ObjectId,
+        ref: "Address"
+      }
+    ],
+    studies: [
+      {
+        type: Types.ObjectId,
+        ref: "Study"
+      }
+    ]
   },
   { timestamps: true }
 );
