@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import morgan from "morgan";
 import { connectToDatabase } from "./config/db";
+import userRoutes from "./routes/userRoutes";
 
 // Allow reading .env files
 dotenv.config();
@@ -19,6 +20,6 @@ app.use(morgan("dev"));
 app.use(express.json());
 
 // API routes
-// Include api routes here
+app.use("/api/v1/users", userRoutes);
 
 export default app;
