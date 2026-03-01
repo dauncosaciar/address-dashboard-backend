@@ -63,4 +63,22 @@ export class UserController {
       res.status(500).json({ error: "Error al actualizar el usuario" });
     }
   };
+
+  static deleteUser = async (req: Request, res: Response) => {
+    try {
+      const { userId } = req.params;
+      const user = await User.findById(userId);
+
+      if (!user) {
+        const error = new Error("Usuario no encontrado");
+        res.status(404).json({ error: error.message });
+        return;
+      }
+
+      await user.deleteOne();
+      res.status(200).json({ message: "Usuario eliminado correctamente" });
+    } catch (error) {
+      res.status(500).json({ error: "Error al eliminar el usuario" });
+    }
+  };
 }
