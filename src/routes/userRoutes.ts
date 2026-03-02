@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { body, param } from "express-validator";
+import { body } from "express-validator";
 import { handleInputErrors } from "../middlewares/validation";
-import { UserController } from "../controllers/UserController";
 import { userExists, validateUserId } from "../middlewares/user";
+import { UserController } from "../controllers/UserController";
 
 const router = Router();
 
