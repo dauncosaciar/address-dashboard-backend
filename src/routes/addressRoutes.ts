@@ -34,4 +34,16 @@ router.param("addressId", addressBelongsToUser);
 
 router.get("/:userId/addresses/:addressId", AddressController.getAddressById);
 
+router.put(
+  "/:userId/addresses/:addressId",
+  body("street").notEmpty().withMessage("La calle de la dirección es obligatoria"),
+  body("city").notEmpty().withMessage("La ciudad de la dirección es obligatoria"),
+  body("province")
+    .notEmpty()
+    .withMessage("La provincia o estado de la dirección es obligatoria"),
+  body("country").notEmpty().withMessage("El país de la dirección es obligatorio"),
+  handleInputErrors,
+  AddressController.updateAddress
+);
+
 export default router;

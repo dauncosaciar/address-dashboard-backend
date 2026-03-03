@@ -43,4 +43,17 @@ export class AddressController {
       res.status(500).json({ error: "Error al obtener la dirección" });
     }
   };
+
+  static updateAddress = async (req: Request, res: Response) => {
+    try {
+      req.address.street = req.body.street;
+      req.address.city = req.body.city;
+      req.address.province = req.body.province;
+      req.address.country = req.body.country;
+      await req.address.save();
+      res.status(200).json({ message: "Dirección actualizada correctamente" });
+    } catch (error) {
+      res.status(500).json({ error: "Error al actualizar la dirección" });
+    }
+  };
 }
