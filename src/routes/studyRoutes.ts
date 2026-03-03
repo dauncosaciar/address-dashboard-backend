@@ -32,4 +32,6 @@ router.post(
   StudyController.createStudy
 );
 
+router.get("/:userId/studies", StudyController.getUserStudies);
+
 export default router;

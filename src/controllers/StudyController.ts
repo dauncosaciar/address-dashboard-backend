@@ -13,4 +13,15 @@ export class StudyController {
       res.status(500).json({ error: "Error al crear el estudio" });
     }
   };
+
+  static getUserStudies = async (req: Request, res: Response) => {
+    try {
+      const studies = await Study.find({ user: req.user._id }).select(
+        "_id title institution startDate endDate user"
+      );
+      res.json(studies);
+    } catch (error) {
+      res.status(500).json({ error: "Error al obtener los estudios" });
+    }
+  };
 }
