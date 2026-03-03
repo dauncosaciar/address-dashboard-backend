@@ -13,4 +13,15 @@ export class AddressController {
       res.status(500).json({ error: "Error al crear la dirección" });
     }
   };
+
+  static getUserAddresses = async (req: Request, res: Response) => {
+    try {
+      const addresses = await Address.find({ user: req.user._id }).select(
+        "_id street city province country user"
+      );
+      res.json(addresses);
+    } catch (error) {
+      res.status(500).json({ error: "Error al obtener las direcciones" });
+    }
+  };
 }

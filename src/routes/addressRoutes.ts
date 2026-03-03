@@ -21,4 +21,6 @@ router.post(
   AddressController.createAddress
 );
 
+router.get("/:userId/addresses", AddressController.getUserAddresses);
+
 export default router;
