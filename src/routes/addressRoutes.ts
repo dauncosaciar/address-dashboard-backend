@@ -2,6 +2,7 @@ import { Router } from "express";
 import { body } from "express-validator";
 import { handleInputErrors } from "../middlewares/validation";
 import { userExists, validateUserId } from "../middlewares/user";
+import { addressExists, validateAddressId } from "../middlewares/address";
 import { AddressController } from "../controllers/AddressController";
 
 const router = Router({ mergeParams: true });
@@ -22,5 +23,10 @@ router.post(
 );
 
 router.get("/:userId/addresses", AddressController.getUserAddresses);
+
+router.param("addressId", validateAddressId);
+router.param("addressId", addressExists);
+
+router.get("/:userId/addresses/:addressId", AddressController.getAddressById);
 
 export default router;

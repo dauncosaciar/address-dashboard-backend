@@ -24,4 +24,23 @@ export class AddressController {
       res.status(500).json({ error: "Error al obtener las direcciones" });
     }
   };
+
+  static getAddressById = async (req: Request, res: Response) => {
+    try {
+      const { addressId } = req.params;
+      const address = await Address.findById(addressId).select(
+        "_id street city province country user"
+      );
+
+      if (!address) {
+        const error = new Error("Dirección no encontrada");
+        res.status(404).json({ error: error.message });
+        return;
+      }
+
+      res.json(address);
+    } catch (error) {
+      res.status(500).json({ error: "Error al obtener la dirección" });
+    }
+  };
 }
