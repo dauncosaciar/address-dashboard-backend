@@ -2,6 +2,7 @@ import { Router } from "express";
 import { body } from "express-validator";
 import { handleInputErrors } from "../middlewares/validation";
 import { userExists, validateUserId } from "../middlewares/user";
+import { studyBelongsToUser, studyExists, validateStudyId } from "../middlewares/study";
 import { StudyController } from "../controllers/StudyController";
 
 const router = Router({ mergeParams: true });
@@ -33,5 +34,11 @@ router.post(
 );
 
 router.get("/:userId/studies", StudyController.getUserStudies);
+
+router.param("studyId", validateStudyId);
+router.param("studyId", studyExists);
+router.param("studyId", studyBelongsToUser);
+
+router.get("/:userId/studies/:studyId", StudyController.getStudyById);
 
 export default router;
