@@ -64,4 +64,6 @@ router.put(
   StudyController.updateStudy
 );
 
+router.delete("/:userId/studies/:studyId", StudyController.deleteStudy);
+
 export default router;

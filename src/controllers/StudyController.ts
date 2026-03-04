@@ -56,4 +56,17 @@ export class StudyController {
       res.status(500).json({ error: "Error al actualizar el estudio" });
     }
   };
+
+  static deleteStudy = async (req: Request, res: Response) => {
+    try {
+      req.user.studies = req.user.studies.filter(
+        study => study.toString() !== req.study._id.toString()
+      );
+
+      await Promise.allSettled([req.study.deleteOne(), req.user.save()]);
+      res.status(200).json({ message: "Estudio eliminado correctamente" });
+    } catch (error) {
+      res.status(500).json({ error: "Error al eliminar el estudio" });
+    }
+  };
 }
