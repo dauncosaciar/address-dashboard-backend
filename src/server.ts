@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import morgan from "morgan";
 import { connectToDatabase } from "./config/db";
+import authRoutes from "./routes/authRoutes";
 import userRoutes from "./routes/userRoutes";
 import addressRoutes from "./routes/addressRoutes";
 import studyRoutes from "./routes/studyRoutes";
@@ -22,6 +23,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 
 // API routes
+app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/users", addressRoutes);
 app.use("/api/v1/users", studyRoutes);
