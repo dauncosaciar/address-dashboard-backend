@@ -16,7 +16,9 @@ export class UserController {
 
   static getAllUsers = async (req: Request, res: Response) => {
     try {
-      const users = await User.find({}).select("_id name lastName role email");
+      const users = await User.find({
+        _id: { $ne: req.authenticatedUser._id }
+      }).select("_id name lastName role email");
       res.json(users);
     } catch (error) {
       res.status(500).json({ error: "Error al obtener los usuarios" });
