@@ -1,10 +1,13 @@
 import { Router } from "express";
 import { body } from "express-validator";
+import { authenticate } from "../middlewares/auth";
 import { handleInputErrors } from "../middlewares/validation";
 import { userExists, validateUserId } from "../middlewares/user";
 import { UserController } from "../controllers/UserController";
 
 const router = Router();
+
+router.use(authenticate);
 
 router.post(
   "/",
