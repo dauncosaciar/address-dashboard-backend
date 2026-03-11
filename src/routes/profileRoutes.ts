@@ -17,4 +17,22 @@ router.put(
   ProfileController.updateProfile
 );
 
+router.put(
+  "/password",
+  body("currentPassword")
+    .notEmpty()
+    .withMessage("La contraseña actual no puede estar vacía"),
+  body("newPassword")
+    .isLength({ min: 8 })
+    .withMessage("La nueva contraseña debe tener un mínimo de 8 caracteres"),
+  body("newPasswordConfirmation").custom((value, { req }) => {
+    if (value !== req.body.newPassword) {
+      throw new Error("Las contraseñas no coinciden");
+    }
+    return true;
+  }),
+  handleInputErrors,
+  ProfileController.updateCurrentPassword
+);
+
 export default router;
