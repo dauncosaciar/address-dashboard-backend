@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { Types } from "mongoose";
-import User, { IUser } from "../models/UserModel";
+import User, { IUser } from "../models/user.model";
 
 declare global {
   namespace Express {
