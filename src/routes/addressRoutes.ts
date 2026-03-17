@@ -8,7 +8,7 @@ import {
   addressExists,
   validateAddressId
 } from "../middlewares/address";
-import { AddressController } from "../controllers/AddressController";
+import { AddressController } from "../controllers/address.controller";
 
 const router = Router({ mergeParams: true });
 
