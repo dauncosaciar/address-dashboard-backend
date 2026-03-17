@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import Address from "../models/AddressModel";
+import Address from "../models/address.model";
 
 export class AddressController {
   static createAddress = async (req: Request, res: Response) => {

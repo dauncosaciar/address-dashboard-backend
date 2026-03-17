@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { Types } from "mongoose";
-import Address, { IAddress } from "../models/AddressModel";
+import Address, { IAddress } from "../models/address.model";
 
 declare global {
   namespace Express {

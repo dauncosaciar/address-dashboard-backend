@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document, PopulatedDoc, Types } from "mongoose";
-import { IAddress } from "./AddressModel";
+import { IAddress } from "./address.model";
 import { IStudy } from "./StudyModel";
 
 const userRoles = {
