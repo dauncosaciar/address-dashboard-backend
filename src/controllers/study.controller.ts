@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import Study from "../models/StudyModel";
+import Study from "../models/study.model";
 
 export class StudyController {
   static createStudy = async (req: Request, res: Response) => {

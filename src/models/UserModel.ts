@@ -1,6 +1,6 @@
 import mongoose, { Schema, Document, PopulatedDoc, Types } from "mongoose";
 import { IAddress } from "./address.model";
-import { IStudy } from "./StudyModel";
+import { IStudy } from "./study.model";
 
 const userRoles = {
   ADMIN: "admin",

@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { Types } from "mongoose";
-import Study, { IStudy } from "../models/StudyModel";
+import Study, { IStudy } from "../models/study.model";
 
 declare global {
   namespace Express {
