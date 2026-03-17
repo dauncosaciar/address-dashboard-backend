@@ -3,7 +3,7 @@ import { body } from "express-validator";
 import { authenticate } from "../middlewares/auth.middleware";
 import { requireAdmin } from "../middlewares/role.middleware";
 import { handleInputErrors } from "../middlewares/validation";
-import { userExists, validateUserId } from "../middlewares/user";
+import { userExists, validateUserId } from "../middlewares/user.middleware";
 import { UserController } from "../controllers/user.controller";
 
 const router = Router();
