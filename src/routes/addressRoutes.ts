@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { body } from "express-validator";
-import { authenticate } from "../middlewares/auth";
+import { authenticate } from "../middlewares/auth.middleware";
 import { handleInputErrors } from "../middlewares/validation";
 import { userExists, validateUserId } from "../middlewares/user";
 import {
