@@ -4,7 +4,7 @@ import { authenticate } from "../middlewares/auth";
 import { requireAdmin } from "../middlewares/role";
 import { handleInputErrors } from "../middlewares/validation";
 import { userExists, validateUserId } from "../middlewares/user";
-import { UserController } from "../controllers/UserController";
+import { UserController } from "../controllers/user.controller";
 
 const router = Router();
 
