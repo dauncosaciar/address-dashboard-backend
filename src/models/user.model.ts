@@ -1,6 +1,6 @@
 import mongoose, { Schema, Document, PopulatedDoc, Types } from "mongoose";
-import { IAddress } from "./address.model";
-import { IStudy } from "./study.model";
+import Address, { IAddress } from "./address.model";
+import Study, { IStudy } from "./study.model";
 
 const userRoles = {
   ADMIN: "admin",
@@ -61,6 +61,17 @@ const UserSchema: Schema = new Schema(
   },
   { timestamps: true }
 );
+
+UserSchema.pre("deleteOne", { document: true }, async function () {
+  const userId = this._id;
+
+  if (!userId) return;
+
+  await Promise.allSettled([
+    Address.deleteMany({ user: userId }),
+    Study.deleteMany({ user: userId })
+  ]);
+});
 
 const User = mongoose.model<IUser>("User", UserSchema);
 export default User;
