@@ -19,7 +19,7 @@ export class UserController {
       const users = await User.find({
         _id: { $ne: req.authenticatedUser._id }
       }).select("_id name lastName role email");
-      res.json(users);
+      res.json({ data: users });
     } catch (error) {
       res.status(500).json({ error: "Error al obtener los usuarios" });
     }
@@ -38,7 +38,7 @@ export class UserController {
         return;
       }
 
-      res.json(user);
+      res.json({ data: user });
     } catch (error) {
       res.status(500).json({ error: "Error al obtener el usuario" });
     }
