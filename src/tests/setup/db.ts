@@ -1,7 +1,13 @@
 import mongoose from "mongoose";
+import { MongoMemoryServer } from "mongodb-memory-server";
+
+let mongoServer: MongoMemoryServer;
 
 export const connectTestDatabase = async () => {
-  await mongoose.connect(process.env.DATABASE_URL);
+  mongoServer = await MongoMemoryServer.create();
+  const uri = mongoServer.getUri();
+
+  await mongoose.connect(uri);
 };
 
 export const clearTestDatabase = async () => {
@@ -14,4 +20,8 @@ export const clearTestDatabase = async () => {
 
 export const disconnectTestDatabase = async () => {
   await mongoose.connection.close();
+
+  if (mongoServer) {
+    await mongoServer.stop();
+  }
 };
