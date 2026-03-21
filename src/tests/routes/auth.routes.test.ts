@@ -109,4 +109,28 @@ describe("AUTH ROUTES", () => {
     expect(res.status).not.toBe(401);
     expect(res.body).not.toHaveProperty("error");
   });
+
+  it("GET /api/v1/auth/user => should return authenticated user", async () => {
+    // Register an user
+    await request(app).post("/api/v1/auth/register").send(user);
+
+    // Login the user and get token
+    const loginRes = await request(app).post("/api/v1/auth/login").send({
+      email: user.email,
+      password: user.password
+    });
+    const token = loginRes.body.token;
+
+    const res = await request(app)
+      .get("/api/v1/auth/user")
+      .set("Authorization", `Bearer ${token}`);
+
+    expect(res.status).toBe(200);
+    expect(res.body).toHaveProperty("data");
+    expect(res.body.data).toHaveProperty("_id");
+
+    expect(res.status).not.toBe(401);
+    expect(res.body).not.toHaveProperty("error");
+    expect(res.body.data).not.toHaveProperty("password");
+  });
 });
