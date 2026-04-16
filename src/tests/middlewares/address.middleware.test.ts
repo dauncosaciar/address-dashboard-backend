@@ -1,23 +1,14 @@
 import { Request, Response, NextFunction } from "express";
 import { Types } from "mongoose";
-import { IUser } from "../../models/user.model";
-import Address, { IAddress } from "../../models/address.model";
 import {
   validateAddressId,
   addressExists,
   addressBelongsToUser
 } from "../../middlewares/address.middleware";
+import { IUser } from "../../models/user.model";
+import Address, { IAddress } from "../../models/address.model";
 
 jest.mock("../../models/address.model");
-
-declare global {
-  namespace Express {
-    interface Request {
-      user: IUser;
-      address: IAddress;
-    }
-  }
-}
 
 describe("ADDRESS MIDDLEWARE", () => {
   let req: Request;
