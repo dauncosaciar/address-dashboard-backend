@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { Types } from "mongoose";
 import { validateUserId, userExists } from "../../middlewares/user.middleware";
-import User, { IUser } from "../../models/user.model";
+import User from "../../models/user.model";
 
 jest.mock("../../models/user.model");
 
