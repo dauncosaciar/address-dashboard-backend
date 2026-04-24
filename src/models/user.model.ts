@@ -67,7 +67,7 @@ UserSchema.pre("deleteOne", { document: true }, async function () {
 
   if (!userId) return;
 
-  await Promise.allSettled([
+  await Promise.all([
     Address.deleteMany({ user: userId }),
     Study.deleteMany({ user: userId })
   ]);

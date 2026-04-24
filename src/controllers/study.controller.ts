@@ -7,7 +7,7 @@ export class StudyController {
       const study = new Study(req.body);
       study.user = req.user._id;
       req.user.studies.push(study._id);
-      await Promise.allSettled([study.save(), req.user.save()]);
+      await Promise.all([study.save(), req.user.save()]);
       res.status(201).json({ message: "Estudio creado correctamente" });
     } catch (error) {
       res.status(500).json({ error: "Error al crear el estudio" });
@@ -63,7 +63,7 @@ export class StudyController {
         study => study.toString() !== req.study._id.toString()
       );
 
-      await Promise.allSettled([req.study.deleteOne(), req.user.save()]);
+      await Promise.all([req.study.deleteOne(), req.user.save()]);
       res.status(200).json({ message: "Estudio eliminado correctamente" });
     } catch (error) {
       res.status(500).json({ error: "Error al eliminar el estudio" });

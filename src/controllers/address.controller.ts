@@ -7,7 +7,7 @@ export class AddressController {
       const address = new Address(req.body);
       address.user = req.user._id;
       req.user.addresses.push(address._id);
-      await Promise.allSettled([address.save(), req.user.save()]);
+      await Promise.all([address.save(), req.user.save()]);
       res.status(201).json({ message: "Dirección creada correctamente" });
     } catch (error) {
       res.status(500).json({ error: "Error al crear la dirección" });
@@ -63,7 +63,7 @@ export class AddressController {
         address => address.toString() !== req.address._id.toString()
       );
 
-      await Promise.allSettled([req.address.deleteOne(), req.user.save()]);
+      await Promise.all([req.address.deleteOne(), req.user.save()]);
       res.status(200).json({ message: "Dirección eliminada correctamente" });
     } catch (error) {
       res.status(500).json({ error: "Error al eliminar la dirección" });
