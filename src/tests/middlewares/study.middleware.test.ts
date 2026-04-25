@@ -84,7 +84,9 @@ describe("STUDY MIDDLEWARE", () => {
         studyId: mockStudy._id.toString()
       };
 
-      (Study.findById as jest.Mock).mockResolvedValue(mockStudy);
+      (Study.findById as jest.Mock).mockReturnValue({
+        select: jest.fn().mockResolvedValue(mockStudy)
+      });
 
       await studyExists(req, res as Response, next);
 
@@ -98,7 +100,9 @@ describe("STUDY MIDDLEWARE", () => {
         studyId: new Types.ObjectId().toString()
       };
 
-      (Study.findById as jest.Mock).mockResolvedValue(null);
+      (Study.findById as jest.Mock).mockReturnValue({
+        select: jest.fn().mockResolvedValue(null)
+      });
 
       await studyExists(req, res as Response, next);
 
@@ -114,7 +118,9 @@ describe("STUDY MIDDLEWARE", () => {
         studyId: new Types.ObjectId().toString()
       };
 
-      (Study.findById as jest.Mock).mockRejectedValue(new Error("DB error"));
+      (Study.findById as jest.Mock).mockReturnValue({
+        select: jest.fn().mockRejectedValue(new Error("DB error"))
+      });
 
       await studyExists(req, res as Response, next);
 
